@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,11 +28,42 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div 
+          className="flex flex-col min-h-screen bg-background text-foreground"
+          style={{ 
+            fontFamily: 'Helvetica, Arial, sans-serif'
+          }}
+        >
+          {/* Navigation Bar */}
+          <nav className="flex items-center justify-between px-8 py-4">
+            <div className="flex items-center">
+              <Link href="/">
+                <img 
+                  src="/favicon.png" 
+                  alt="Arien Aviation" 
+                  className="h-10 w-10"
+                />
+              </Link>
+            </div>
+            <Button size="default" variant="outline" asChild>
+              <Link href="/login">Login</Link>
+            </Button>
+          </nav>
+
+          {/* Main content */}
+          {children}
+
+          {/* Footer at bottom */}
+          <footer 
+            className="text-center py-8 text-sm text-muted-foreground"
+          >
+            © 2025 Arien Aviation. All rights reserved.
+          </footer>
+        </div>
       </body>
     </html>
   );
