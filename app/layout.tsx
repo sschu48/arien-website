@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Navbar } from "@/components/navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,20 +38,7 @@ export default function RootLayout({
           }}
         >
           {/* Navigation Bar */}
-          <nav className="flex items-center justify-between px-8 py-4">
-            <div className="flex items-center">
-              <Link href="/">
-                <img 
-                  src="/favicon.png" 
-                  alt="Arien Aviation" 
-                  className="h-10 w-10"
-                />
-              </Link>
-            </div>
-            <Button size="default" variant="outline" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
-          </nav>
+          <Navbar />
 
           {/* Main content */}
           {children}
