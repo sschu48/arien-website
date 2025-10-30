@@ -44,11 +44,11 @@ export default function RootLayout({
           {children}
 
           {/* Footer at bottom */}
-          <footer 
+          {/* <footer 
             className="text-center py-8 text-sm text-muted-foreground"
           >
             © 2025 Arien Aviation. All rights reserved.
-          </footer>
+          </footer> */}
         </div>
       </body>
     </html>
