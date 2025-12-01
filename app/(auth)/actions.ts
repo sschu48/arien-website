@@ -19,7 +19,7 @@ export async function login(formData: FormData) {
   }
 
   // Refresh the page to ensure fresh data
-  redirect("/");
+  redirect("/chat");
 }
 
 export async function signup(formData: FormData) {
