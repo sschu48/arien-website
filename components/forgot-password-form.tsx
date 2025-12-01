@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabase/client";
+import { createBrowserClient } from '@supabase/ssr'
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -26,7 +26,10 @@ export function ForgotPasswordForm({
 
     const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    const supabase = createClient();
+    const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
     setIsLoading(true);
     setError(null);
 
