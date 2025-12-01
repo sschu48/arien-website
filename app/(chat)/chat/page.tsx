@@ -10,5 +10,9 @@ export default async function NewChatPage() {
     redirect("/login");
   }
 
-  return <Chat />;
+  return (
+    <div className="flex items-center justify-center min-h-screen text-center">
+      <h1>Welcome to Chat</h1>
+    </div>
+  );
 }
