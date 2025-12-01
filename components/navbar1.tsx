@@ -55,8 +55,8 @@ interface Navbar1Props {
 
 const Navbar1 = ({
   logo = {
-    url: "https://arienaviation.com",
-    src: "../public/favicon.png",
+    url: "/",
+    src: "/favicon.png",
     alt: "logo",
     title: "Arien Aviation",
   },
@@ -138,8 +138,8 @@ const Navbar1 = ({
   },
 }: Navbar1Props) => {
   return (
-    <section className="py-4">
-      <div className="container">
+    <section className="fixed w-full px-4 py-4">
+      <div className="container mx-auto">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
@@ -147,7 +147,7 @@ const Navbar1 = ({
             <a href={logo.url} className="flex items-center gap-2">
               <img
                 src={logo.src}
-                className="max-h-8 dark:invert"
+                className="max-h-8"
                 alt={logo.alt}
               />
               <span className="text-lg font-semibold tracking-tighter">
@@ -179,7 +179,7 @@ const Navbar1 = ({
             <a href={logo.url} className="flex items-center gap-2">
               <img
                 src={logo.src}
-                className="max-h-8 dark:invert"
+                className="max-h-8"
                 alt={logo.alt}
               />
             </a>
@@ -195,7 +195,7 @@ const Navbar1 = ({
                     <a href={logo.url} className="flex items-center gap-2">
                       <img
                         src={logo.src}
-                        className="max-h-8 dark:invert"
+                        className="max-h-8"
                         alt={logo.alt}
                       />
                     </a>
