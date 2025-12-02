@@ -1,56 +1,47 @@
-"use client";
+// components/ui/chat/chat-input.tsx
+'use client'
 
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { ArrowUp } from "lucide-react";
-import { useRef, useEffect } from "react";
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { PaperPlaneIcon } from '@radix-ui/react-icons'
+import { type FormEvent } from 'react'
 
 interface ChatInputProps {
-  input: string;
-  setInput: (value: string) => void;
-  onSubmit: () => void;
-  isLoading: boolean;
+  input: string
+  handleInputChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  handleSubmit: (e: FormEvent) => void
+  isLoading: boolean
 }
 
-export function ChatInput({ input, setInput, onSubmit, isLoading }: ChatInputProps) {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-    }
-  }, [input]);
-
-  function handleKeyDown(e: React.KeyboardEvent) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      if (input.trim() && !isLoading) {
-        onSubmit();
-      }
-    }
-  }
-
+export function ChatInput({
+  input,
+  handleInputChange,
+  handleSubmit,
+  isLoading,
+}: ChatInputProps) {
   return (
-    <div className="flex items-end gap-2 p-4 bg-background">
+    <form onSubmit={handleSubmit} className="flex gap-2">
       <Textarea
-        ref={textareaRef}
         value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
+        onChange={handleInputChange}
         placeholder="Send a message..."
+        className="min-h-12 resize-none rounded-xl border p-3 shadow-sm"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault()
+            handleSubmit(e as any)
+          }
+        }}
         disabled={isLoading}
-        rows={1}
-        className="min-h-[44px] max-h-[200px] resize-none"
       />
       <Button
-        onClick={onSubmit}
-        disabled={!input.trim() || isLoading}
+        type="submit"
         size="icon"
-        className="shrink-0"
+        disabled={isLoading || !input.trim()}
+        className="rounded-xl"
       >
-        <ArrowUp className="h-4 w-4" />
+        <PaperPlaneIcon className="h-5 w-5" />
       </Button>
-    </div>
-  );
+    </form>
+  )
 }
